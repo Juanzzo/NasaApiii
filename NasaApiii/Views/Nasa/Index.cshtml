@@ -1,0 +1,31 @@
+﻿@model List<NasaApiii.Services.NasaApodResponse>
+
+@{
+    ViewData["Title"] = "NASA - APOD (últimos días)";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">🌌 NASA APOD - Últimos Días</h2>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <img src="@item.Url" class="card-img-top" alt="@item.Title" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p><strong>📅 Fecha:</strong> @item.Date</p>
+                        <p class="card-text">
+                            @(
+                                item.Explanation.Length > 120
+                                ? item.Explanation.Substring(0, 120) + "..."
+                                : item.Explanation
+                                )
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
